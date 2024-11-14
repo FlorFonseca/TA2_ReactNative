@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { ScrollView, StyleSheet, Text, View, Image, Button } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Button,
+} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
@@ -17,7 +24,7 @@ const images = [
   },
   {
     id: "3",
-    imageUrl: require('./images/images (1).jpg'),
+    imageUrl: require("./images/images (1).jpg"),
     description: "Labrador masticando un juguete colorido",
   },
   {
@@ -38,11 +45,12 @@ const images = [
 ];
 
 //Este es un componente para manejar la galería dinámica
-const DynamicGallery = () =>{
-  const [actualImageIndex, setActualImageIndex] = useState(0);//acá se va guardando el indice de la imágen que se va mostrando
-  
-  const changeImage = () =>{//va recorriendo por los indices. Con % vuelve al inicio
-    setActualImageIndex((prevIndex) => (prevIndex +1) % images.length);
+const DynamicGallery = () => {
+  const [actualImageIndex, setActualImageIndex] = useState(0); //acá se va guardando el indice de la imágen que se va mostrando
+
+  const changeImage = () => {
+    //va recorriendo por los indices. Con % vuelve al inicio
+    setActualImageIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
   return (
@@ -62,30 +70,29 @@ const DynamicGallery = () =>{
       <StatusBar style="auto" />
     </View>
   );
-}
+};
 
 //Este componente se encarga de mostrar la galeria con la scroll view de la parte 1
-const GalleryScroll= ()=>{
+const GalleryScroll = () => {
   return (
-  <ScrollView >
-    {images.map((imagen) => (
-      <View key={imagen.id} style={styles.imageContainer}>
-        <Image
-          source={imagen.imageUrl}
-          style={styles.image}
-          resizeMode="cover"
-        />
-        <Text style={styles.description}>{imagen.description}</Text>
-      </View>
-    ))}
-  </ScrollView>
+    <ScrollView>
+      {images.map((imagen) => (
+        <View key={imagen.id} style={styles.imageContainer}>
+          <Image
+            source={imagen.imageUrl}
+            style={styles.image}
+            resizeMode="cover"
+          />
+          <Text style={styles.description}>{imagen.description}</Text>
+        </View>
+      ))}
+    </ScrollView>
   );
-}
+};
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-
   return (
     <NavigationContainer>
       <Tab.Navigator>
@@ -106,7 +113,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     margin: 10,
     borderRadius: 10,
-    elevation:2,
+    elevation: 2,
     overflow: "hidden",
     backgroundColor: "#f0f0f0",
     alignItems: "center",
